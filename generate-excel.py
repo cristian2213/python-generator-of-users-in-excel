@@ -1,4 +1,5 @@
 import xlsxwriter
+import time
 from random import randint
 from random import random
 from faker import Faker
@@ -20,8 +21,8 @@ def get_user():
 
 def generate_file(): 
   users = get_user()
-  random_name = random()
-  workbook = xlsxwriter.Workbook('users' + str(random_name) + '.xlsx')
+  random_name = str(time.strftime("%H:%M:%S", time.localtime())).replace(':', '-', 3)
+  workbook = xlsxwriter.Workbook('users-' + random_name + '.xlsx')
   worksheet = workbook.add_worksheet()
   headers = ['Nombres', 'Apellidos', 'Dirección', 'Correo', 'Celular']
   coordinates = ['A', 'B', 'C', 'D', 'E']
